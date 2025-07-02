@@ -20,9 +20,15 @@ href="https://wa.me/5519993261388?text=Olá%2C%20tudo%20bem%3F%20Vim%20através%
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-4"
         >
-          <div className="bg-white rounded-full p-2">
-            <img src="/wpp.svg" alt="WhatsApp" className="w-6 h-6" />
-          </div>
+        {/* Ícone */}
+<div className="bg-white rounded-full p-1 sm:p-1.5 flex items-center justify-center">
+  <img
+    src="/wpp.svg"
+    alt="WhatsApp"
+    className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
+  />
+</div>
+
 
           <div className="flex flex-col items-start">
             <span className="text-sm font-normal">Atendimento Imediato</span>
