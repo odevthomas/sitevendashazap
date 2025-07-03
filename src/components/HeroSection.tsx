@@ -65,22 +65,23 @@ const HeroSection = () => {
           <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 rounded-xl blur opacity-60 animate-pulse" />
 
           {/* Botão principal */}
-          <button
-            onClick={scrollToMachines}
-            className="relative flex items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 px-3 py-3 sm:px-4 sm:py-4 rounded-xl border-2 border-orange-400 shadow-2xl transition-all duration-300 hover:scale-105 group min-w-[200px] sm:min-w-[240px]"
-          >
-            <Laptop className="w-6 h-6 sm:w-7 sm:h-7 text-white mr-3 animate-pulse" />
-            <div className="flex flex-col items-start">
-              <h3 className="text-sm sm:text-base font-bold text-white leading-tight">Veja nossas máquinas!</h3>
-              <div className="flex items-center text-white/90 text-xs sm:text-sm">
-                <span>Confira os modelos</span>
-                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-              </div>
-            </div>
-            <div className="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold px-2 py-1 rounded-full text-[10px] animate-bounce">
-              NOVO
-            </div>
-          </button>
+         <button
+  onClick={scrollToMachines}
+  className="relative flex items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 px-3 py-3 sm:px-4 sm:py-4 rounded-xl border-2 border-orange-400 shadow-2xl transition-all duration-300 hover:scale-105 group min-w-[200px] sm:min-w-[240px]"
+>
+  <Laptop className="w-6 h-6 sm:w-7 sm:h-7 text-white mr-3 animate-pulse" />
+  <div className="flex flex-col items-start">
+    <h3 className="text-sm sm:text-base font-bold text-white leading-tight">Veja nossas máquinas!</h3>
+    <div className="flex items-center text-white/90 text-xs sm:text-sm">
+      <span>Confira os modelos</span>
+      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+    </div>
+  </div>
+  <div className="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold px-2 py-1 rounded-full text-[10px] animate-bounce">
+    NOVO
+  </div>
+</button>
+
         </div>
       </div>
 
