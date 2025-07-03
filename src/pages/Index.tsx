@@ -25,35 +25,32 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto mb-20">
             {/* PC Gamer Card */}
-            <VideoCard
-              title="COMPUTADOR GAMER"
-              description="Jogue Call of Duty, Valorant, CS, LoL e até GTA 6 com alto desempenho, máxima estabilidade, FPS elevado e visual de respeito."
-              videoSrc="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/pcgamer.mp4"
-              icon={<Gamepad2 className="w-8 h-8 text-white" />}
-              whatsappMessage="Gostaria de um orçamento para um PC Gamer."
-            />
+           <VideoCard
+  title="COMPUTADOR GAMER"
+  description="Jogue Call of Duty, Valorant, CS, LoL e até GTA 6 com desempenho máximo, FPS elevado, gráficos incríveis e estabilidade para longas sessões de jogo sem travamentos."
+  videoSrc="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/pcgamer.mp4"
+  icon={<Gamepad2 className="w-8 h-8 text-white" />}
+  whatsappMessage="Gostaria de um orçamento para um PC Gamer."
+/>
 
             {/* PC Profissões Card */}
             <CarouselCard
-              title="COMPUTADORES PROFISSÕES"
-              description="Máquinas desenvolvidas para engenheiros, arquitetos, designers gráficos e outros profissionais que exigem performance, agilidade e confiabilidade no dia a dia."
-              items={professionPCs}
-              icon={<Cpu className="w-8 h-8 text-white" />}
-              whatsappMessage="Olá, gostaria de saber mais sobre os computadores voltados para uso profissional."
-            />
+  title="COMPUTADORES PROFISSÕES"
+  description="Projetados para engenheiros, arquitetos, designers e programadores que exigem agilidade, desempenho avançado e estabilidade em softwares técnicos e multitarefa pesada."
+  items={professionPCs}
+  icon={<Cpu className="w-8 h-8 text-white" />}
+  whatsappMessage="Olá, gostaria de saber mais sobre os computadores voltados para uso profissional."
+/>
+
 
             {/* PC Personalizado Card */}
-            <VideoCard
-              title="COMPUTADORES PERSONALIZADOS"
-              description="Montamos seu PC sob medida, com processadores Ryzen ou Intel e placas de vídeo high-end, escolhidas de acordo com sua necessidade e estilo de uso."
-              videoSrc="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/pccustom.mp4"
-              icon={
-                <Settings
-                  className="w-6 h-6 sm:w-8 sm:h-8 text-white"
-                />
-              }
-              whatsappMessage="Olá, gostaria de montar uma máquina customizada e totalmente personalizada por mim."
-            />
+           <VideoCard
+  title="COMPUTADORES PERSONALIZADOS"
+  description="Monte seu PC ideal com peças de alta performance, escolhidas sob medida para seu tipo de uso — jogos, trabalho profissional ou estudos exigentes em qualquer área."
+  videoSrc="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/pccustom.mp4"
+  icon={<Settings className="w-8 h-8 text-white" />}
+  whatsappMessage="Olá, gostaria de montar uma máquina customizada e totalmente personalizada por mim."
+/>
           </div>
 
           {/* Product Showcase + WhatsApp CTA */}
