@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Laptop, ArrowRight, Volume2, VolumeX } from "lucide-react";
+import { Laptop } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   const [isMuted, setIsMuted] = useState(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const video = document.getElementById("background-video") as HTMLVideoElement | null;
@@ -11,14 +12,6 @@ const HeroSection = () => {
       video.muted = isMuted;
     }
   }, [isMuted]);
-
-  const toggleMute = () => {
-    const video = document.getElementById("background-video") as HTMLVideoElement | null;
-    if (video) {
-      video.muted = !video.muted;
-      setIsMuted(!video.muted);
-    }
-  };
 
   const scrollToMachines = () => {
     const el = document.getElementById("maquinas");
@@ -29,82 +22,66 @@ const HeroSection = () => {
     <section className="relative min-h-screen w-full overflow-hidden bg-black">
       {/* Vídeo de fundo */}
       <div className="absolute inset-0 w-full h-full z-0">
-  <video
-    id="background-video"
-    autoPlay
-    loop
-    muted={isMuted}
-    playsInline
-    className="object-cover w-full h-full"
-  >
-    <source src="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/hero-horizontal-videos.mp4" type="video/mp4" />
-    Seu navegador não suporta vídeos HTML5.
-  </video>
+        {!videoLoaded && (
+          <div className="w-full h-full flex items-center justify-center bg-black">
+            <div className="animate-pulse w-24 h-24 bg-white/10 rounded-full" />
+          </div>
+        )}
 
-  {/* Gradientes sobrepostos */}
-  <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
-  <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
-</div>
+        <video
+          id="background-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={`object-cover w-full h-full transition-opacity duration-1000 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
+          onCanPlayThrough={() => setVideoLoaded(true)}
+        >
+          <source src="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/hero-horizontal-videos.mp4" type="video/mp4" />
+        </video>
 
+        {/* Gradientes sobrepostos */}
+        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+      </div>
 
-     
+      {/* Botão flutuante + Mascote */}
+      <div className="fixed bottom-5 right-15 sm:bottom-10 sm:right-10 z-20 flex items-end gap-4">
+        {/* Mascote alinhado */}
+        <div className="hidden sm:block w-24 sm:w-32 md:w-36 lg:w-40">
+          <img src="/imgs/mascote.png" alt="Mascote Hazap" className="drop-shadow-2xl w-full" />
+        </div>
 
-      {/* Botão flutuante CTA */}
-      <div className="fixed bottom-5 right-9 z-20 sm:absolute sm:bottom-6 sm:right-6">
-        <div className="relative">
-          {/* Mascote maior e melhor alinhado */}
-          <div className="hidden sm:block absolute -top-24 -left-16 w-36 h-40 lg:w-40 lg:h-40 z-0">
+        {/* Botão principal */}
+        <button
+          onClick={scrollToMachines}
+          className="relative flex items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 px-4 py-4 rounded-xl border-2 border-orange-400 shadow-2xl transition-all duration-300 hover:scale-105 group min-w-[220px] sm:min-w-[240px]"
+        >
+          <Laptop className="w-6 h-6 text-white mr-3 animate-pulse" />
+          <div className="text-left">
+            <h3 className="text-base font-bold text-white">Veja nossas máquinas!</h3>
+            <p className="text-xs text-white/80">Confira os modelos disponíveis</p>
+          </div>
+          <div className="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold px-2 py-1 rounded-full text-[10px] animate-bounce">
+            NOVO
+          </div>
+        </button>
+      </div>
+
+      {/* Conteúdo central */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+        <div className="max-w-4xl w-full">
+          {/* Logo central */}
+          <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto mb-12">
+            <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-lg animate-pulse" />
             <img
-              src="/imgs/mascote.png"
-              alt="Mascote Hazap"
-              className="object-contain drop-shadow-xl transform "
+              src="/imgs/logo.png"
+              alt="Hazap Logo"
+              className="w-full h-full object-contain drop-shadow-2xl transition-all duration-300 hover:scale-105"
             />
           </div>
 
-          {/* Efeito de brilho */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 rounded-xl blur opacity-60 animate-pulse" />
-
-          {/* Botão principal */}
-         <button
-  onClick={scrollToMachines}
-  className="relative flex items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 px-3 py-3 sm:px-4 sm:py-4 rounded-xl border-2 border-orange-400 shadow-2xl transition-all duration-300 hover:scale-105 group min-w-[200px] sm:min-w-[240px]"
->
-  <Laptop className="w-6 h-6 sm:w-7 sm:h-7 text-white mr-3 animate-pulse" />
-  <div className="flex flex-col items-start">
-    <h3 className="text-sm sm:text-base font-bold text-white leading-tight">Veja nossas máquinas!</h3>
-    <div className="flex items-center text-white/90 text-xs sm:text-sm">
-      <span>Confira os modelos</span>
-      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-    </div>
-  </div>
-  <div className="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold px-2 py-1 rounded-full text-[10px] animate-bounce">
-    NOVO
-  </div>
-</button>
-
-        </div>
-      </div>
-
-      {/* Conteúdo principal */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
-        <div className="max-w-4xl w-full">
-          <div className="flex justify-center mb-8 relative">
-            {/* Fundo escuro apenas no mobile */}
-            <div className="absolute inset-0 bg-black/60 blur-2xl rounded-full sm:hidden" />
-
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 group">
-              <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-lg animate-pulse" />
-              <img
-                src="/imgs/logo.png"
-                alt="HAZAP Logo"
-                className="object-contain drop-shadow-2xl w-full h-full transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
-              />
-              <div className="absolute top-4 right-4 w-2 h-2 bg-yellow-400 rounded-full animate-ping" />
-              <div className="absolute top-12 left-8 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: "1s" }} />
-              <div className="absolute bottom-8 right-12 w-1.5 h-1.5 bg-orange-400 rounded-full animate-ping" style={{ animationDelay: "2s" }} />
-            </div>
-          </div>
-
+          {/* Título */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-12 leading-tight drop-shadow-lg">
             Melhor loja de computadores do Interior de São Paulo
           </h1>
@@ -116,42 +93,44 @@ const HeroSection = () => {
             <div className="absolute -inset-6 rounded-full border-4 border-[#25D366] animate-ping opacity-20" style={{ animationDelay: "300ms" }} />
             <div className="absolute -inset-9 rounded-full border-4 border-[#25D366] animate-ping opacity-10" style={{ animationDelay: "600ms" }} />
 
-           <Button
-  size="lg"
-  className="relative w-full text-lg font-bold bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] 
-    px-4 py-4 sm:px-8 sm:py-8 rounded-full border-2 border-white shadow-xl transition-all duration-300 hover:scale-105"
-  asChild
->
-  <a
-    href="https://wa.me/5519993261388?text=Olá%2C%20tudo%20bem%3F%20Vim%20através%20do%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20personalizado."
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center justify-center gap-3"
-  >
-    <div className="bg-white rounded-full p-1 sm:p-2">
-      <img src="/wpp.svg" alt="WhatsApp" className="w-4 h-4 sm:w-6 sm:h-6" />
-    </div>
-    <div className="flex flex-col items-start">
-      <span className="text-xs sm:text-sm font-normal">Atendimento Imediato</span>
-      <span className="text-base sm:text-lg font-bold">FALE COM ESPECIALISTA</span>
-    </div>
+            <Button
+              size="lg"
+              className="relative w-full text-lg font-bold bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] 
+                px-4 py-4 sm:px-8 sm:py-8 rounded-full border-2 border-white shadow-xl transition-all duration-300 hover:scale-105"
+              asChild
+            >
+              <a
+                href="https://wa.me/5519993261388?text=Olá%2C%20tudo%20bem%3F%20Vim%20através%20do%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20personalizado."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3"
+              >
+                <div className="bg-white rounded-full p-2">
+                  <img src="/wpp.svg" alt="WhatsApp" className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-xs sm:text-sm font-normal">Atendimento Imediato</span>
+                  <span className="text-base sm:text-lg font-bold">FALE COM ESPECIALISTA</span>
+                </div>
 
-    <span className="absolute -right-2 -top-2 flex h-6 w-6">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-      <span className="relative inline-flex rounded-full h-6 w-6 bg-white text-[#25D366] items-center justify-center text-xs font-bold">
-        1
-      </span>
-    </span>
-  </a>
-</Button>
+                <span className="absolute -right-2 -top-2 flex h-6 w-6">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex rounded-full h-6 w-6 bg-white text-[#25D366] items-center justify-center text-xs font-bold">
+                    1
+                  </span>
+                </span>
+              </a>
+            </Button>
 
             {/* Status online */}
-             <div className="absolute -bottom-8 left-0 right-0 text-center">
-              <div className="inline-flex items-center bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
-                <div className="w-2 h-2 bg-green-100 rounded-full mr-2 animate-pulse" />
-                <span>3 especialistas online agora</span>
-              </div>
-            </div>
+           <div className="absolute -bottom-8 left-0 right-0 text-center">
+  <div className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-sm font-medium shadow-md">
+    <span className="text-green-600 font-bold text-lg">✓</span>
+ 
+    <span>3 especialistas online agora</span>
+  </div>
+</div>
+
           </div>
         </div>
       </div>
