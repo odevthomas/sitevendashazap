@@ -49,8 +49,7 @@ const Index = () => {
               videoSrc="https://iyqujwbqfomznelsvebl.supabase.co/storage/v1/object/public/videos-hazap/pccustom.mp4"
               icon={
                 <Settings
-                  className="w-8 h-8 text-white animate-spin"
-                  style={{ animationDuration: "3s" }}
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                 />
               }
               whatsappMessage="Olá, gostaria de montar uma máquina customizada e totalmente personalizada por mim."

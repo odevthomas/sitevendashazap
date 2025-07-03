@@ -79,7 +79,13 @@ const ProductShowcase = () => {
                 {product.desc}
               </p>
 
-              <div className="inline-flex items-center gap-3 text-white font-semibold bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-6 py-3 rounded-full transition-all duration-300 group-hover:scale-105 w-fit">
+              <div
+                className="inline-flex items-center gap-3 text-white font-semibold 
+                bg-gradient-to-r from-orange-500 to-orange-700 
+                hover:from-orange-600 hover:to-orange-800 
+                px-6 py-3 rounded-xl border-2 border-orange-400 
+                shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer w-fit"
+              >
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 Fale com um especialista agora
               </div>
